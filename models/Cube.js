@@ -3,22 +3,26 @@ const mongoose = require('mongoose');
 const cubeSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        minlength: 5,
+        maxlength: 250,
     },
     imageUrl: {
         type: String,
-        required: true
+        required: true,
+        match: [/^(http|https):/, 'Invalid url input'],
     },
     description: {
         type: String,
         required: true,
-        maxlength: 2000,
+        minlength: 20,
+        maxlength: 250,
     },
     difficultyLevel: {
         type: Number,
         required: true,
         min: 1,
-        max: 10,
+        max: 6,
     },
     accessories: [{
         type: mongoose.Schema.ObjectId,
