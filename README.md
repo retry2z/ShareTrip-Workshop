@@ -2,13 +2,15 @@
 ![GitHub stars](https://img.shields.io/github/stars/retry2z/ExpressJS-API?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/retry2z/ExpressJS-API?style=social)
 
+
 ## Features
 
 - Dynamic routing managing
 - Route guarding a different approach.
 - Mongoose
-- Auth service - JWT & bcrypt 
-- Default login - guest@example.com / 12345678
+- Custom Auth service - JWT & bcrypt 
+- Default login - guest@example.com / 12345678 || asd@asd.asd / asdasdasd
+- Front-end validation, Back-end validation, Data-base validation 
 
 
 ## Prerequisites
@@ -25,10 +27,9 @@ To install follow these steps:
 Windows, Linux and macOS:
 ```
 npm install
-
 ```
 
-Create or personize `.env` file bofere run `npm start` to run server.
+Create or personize `.env` file bofere run `npm start` to start the server.
 
 
 ## Documentation & Examples
@@ -48,12 +49,6 @@ To contribute to follow these steps:
 5. Create the pull request.
 
 Alternatively see the GitHub documentation on [creating a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
-
-## Contributors
-
-Thanks to the following people who have contributed to this project:
-
-//
 
 ## Contact
 
