@@ -1,0 +1,19 @@
+<header>
+    <ul>
+        <li><img class="logo" src="/static/images/logo.png"></li>
+        <li><a href="/">Browse</a></li>
+
+        {{#if user}}
+        <li><a href="/cubic/create">Add a Cube</a></li>
+        <li><a href="/user/profile">Profile</a></li>
+        <li><a href="/user/logout">Logout</a></li>
+        {{/if}}
+
+        <li><a href="/about">About</a></li>
+
+        {{#unless user}}
+        <li><a href="/auth/login">Login</a></li>
+        <li><a href="/auth/register">Register</a></li>
+        {{/unless}}
+    </ul>
+</header>
