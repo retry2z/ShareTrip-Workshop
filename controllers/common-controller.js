@@ -1,11 +1,11 @@
-const cube = require('./product-service');
+const productService = require('./product-service');
 const search = require('../utils/search');
 
 module.exports = {
     home: {
         async get(request, response) {
             try {
-                const list = await cube.list();
+                const list = await productService.list();
                 const data = {
                     cubes: list,
                     user: !!request.user,
@@ -24,7 +24,7 @@ module.exports = {
 
         async post(request, response) {
             try {
-                const list = await cube.list();
+                const list = await productService.list();
                 const data = {
                     cubes: search(list, request.body),
                     user: !!request.user,

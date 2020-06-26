@@ -10,7 +10,7 @@ const cubeSchema = new mongoose.Schema({
     imageUrl: {
         type: String,
         required: true,
-        match: [/^(http|https):/, 'Invalid url input'],
+        match: [/^(http|https):/, 'Invalid url address'],
     },
     description: {
         type: String,

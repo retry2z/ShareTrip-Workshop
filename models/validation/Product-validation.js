@@ -5,11 +5,11 @@ module.exports = class Cube {
 
     init(data) {
         if (!!data === false) {
-            throw new TypeError('All fields are repaired');
+            throw new TypeError('Invalid input data.');
         }
 
         for (const key in data) {
-            this['_' + key] = data[key];
+            this['_' + key] = data[key].trim();
         }
     }
 
@@ -32,7 +32,7 @@ module.exports = class Cube {
         if (pattern.test(data)) {
             this.imageUrl = data;
         } else {
-            throw new TypeError('Invalid url');
+            throw new TypeError('Invalid url address.');
         }
     }
 

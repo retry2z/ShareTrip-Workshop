@@ -1,5 +1,5 @@
-const cubeService = require('./product-service');
-const Cube = require('../models/validation/Cube-validation');
+const productService = require('./product-service');
+const ProductValidation = require('../models/validation/Product-validation');
 
 const errorHandler = (err, request, response, page, input) => {
     if (err.name === 'TypeError') {
@@ -29,8 +29,8 @@ module.exports = {
         },
         async post(request, response) {
             try {
-                const item = new Cube(request.body);
-                const tmp = await cubeService.add({ ...item, author: request.user.uid });
+                const item = new ProductValidation(request.body);
+                const tmp = await productService.add({ ...item, author: request.user.uid });
                 await request.user.addSet('cubes', tmp._id);
                 return 1
             }
@@ -44,12 +44,10 @@ module.exports = {
     details: {
         async get(request, response) {
             try {
-                const cubeDetails = await cubeService.details(request.params.id, 'accessories');
-                const accessories = cubeDetails.accessories || false;
-                const owner = cubeDetails.author.toString() === request.user.uid.toString();
+                const owner = productDetails.author.toString() === request.user.uid.toString();
 
                 const data = {
-                    item: cubeDetails,
+                    item: productDetails,
                     accessories: accessories,
                     user: !!request.user,
                     owner,
@@ -67,7 +65,7 @@ module.exports = {
     list: {
         async get(request, response) {
             try {
-                const list = await cubeService.list();
+                const list = await productService.list();
                 response.render('index', { cube: list });
                 return 1
             }
@@ -81,15 +79,15 @@ module.exports = {
     edit: {
         async get(request, response) {
             try {
-                const cubeDetails = await cubeService.details(request.params.id);
-                const owner = cubeDetails.author.toString() === request.user.uid.toString();
+                const productDetails = await productService.details(request.params.id);
+                const owner = productDetails.author.toString() === request.user.uid.toString();
 
                 if (!owner) {
                     return 0
                 }
 
                 const data = {
-                    item: cubeDetails,
+                    item: productDetails,
                     user: !!request.user,
                 }
                 response.render('productEdit', data);
@@ -101,15 +99,15 @@ module.exports = {
         },
         async post(request, response) {
             try {
-                const cubeDetails = await cubeService.details(request.params.id);
-                const owner = cubeDetails.author.toString() === request.user.uid.toString();
+                const productDetails = await productService.details(request.params.id);
+                const owner = productDetails.author.toString() === request.user.uid.toString();
 
                 if (!owner) {
                     return 0
                 }
 
-                const item = new Cube(request.body);
-                await cubeService.edit(request.params.id, item);
+                const item = new ProductValidation(request.body);
+                await productService.edit(request.params.id, item);
                 return 1
             }
             catch (err) {
@@ -122,15 +120,15 @@ module.exports = {
     delete: {
         async get(request, response) {
             try {
-                const cubeDetails = await cubeService.details(request.params.id);
-                const owner = cubeDetails.author.toString() === request.user.uid.toString();
+                const productDetails = await productService.details(request.params.id);
+                const owner = productDetails.author.toString() === request.user.uid.toString();
 
                 if (!owner) {
                     return 0
                 }
 
                 const data = {
-                    item: cubeDetails,
+                    item: productDetails,
                     user: !!request.user,
                 }
                 response.render('productDelete', data);
@@ -143,14 +141,14 @@ module.exports = {
         },
         async post(request, response) {
             try {
-                const cubeDetails = await cubeService.details(request.params.id);
-                const owner = cubeDetails.author.toString() === request.user.uid.toString();
+                const productDetails = await productService.details(request.params.id);
+                const owner = productDetails.author.toString() === request.user.uid.toString();
 
                 if (!owner) {
                     return 0
                 }
 
-                await cubeService.remove(request.params.id);
+                await productService.remove(request.params.id);
                 await request.user.pull('cubes', request.params.id);
                 return 1
             }
