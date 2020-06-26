@@ -14,7 +14,7 @@ const authenticate = async (request, response, next) => {
     }
 
     try {
-        const verified = jwt.verify(cookie, config.secretToken);
+        const verified = await jwt.verify(cookie, config.secretToken);
         const account = await user.findById(verified.uid);
 
         if (!account) {
@@ -38,11 +38,7 @@ const authService = {
         }
 
         try {
-            const account = new Account({ email, password });
-            const salt = await bcrypt.genSalt(10);
-            account.password = await bcrypt.hash(password, salt);
-            const tmp = await new user(account).save();
-
+            const tmp = await new user(new Account({ email, password })).save();
             return await jwt.sign({ uid: tmp._id }, config.secretToken)
         }
         catch (err) {
