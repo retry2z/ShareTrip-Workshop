@@ -1,5 +1,5 @@
 const Product = require('../../models/Product');
-const Repository = require('../../models/Services/Repository');
+const Repository = require('services/Repository');
 
 //Add new individual functionality here
 
