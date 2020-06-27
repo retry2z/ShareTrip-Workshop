@@ -8,14 +8,13 @@ module.exports = {
                 const data = {
                     user: !!request.user,
                 }
-                response.render('authRegister', data);
-                return 1
+                return response.render('authRegister', data);
             }
             catch (err) {
                 if (err.name === 'URIError') {
                     console.error(err.message);
                 }
-                return 0
+                return false
             }
         },
 
@@ -29,13 +28,12 @@ module.exports = {
                         user: !!request.user,
                         error: err.message,
                     }
-                    response.render('authRegister', data);
-                    return -1
+                    return response.render('authRegister', data);
                 }
                 if (err.name === 'URIError') {
                     console.error(err);
                 }
-                return 0
+                return false
             }
         }
     },
@@ -47,17 +45,16 @@ module.exports = {
                 const data = {
                     user: !!request.user,
                 }
-                response.render('authLogin', data);
-                return 1
+                return response.render('authLogin', data);
             }
             catch (err) {
                 if (err.name === 'URIError') {
                     console.error(err.message);
                 }
-                return 0
+                return false
             }
         },
-        
+
         async post(request, response) {
             try {
                 return await authService.login(request.body);
@@ -68,14 +65,12 @@ module.exports = {
                         user: !!request.user,
                         error: err.message,
                     }
-                    response.render('authLogin', data);
-                    return -1
+                    return response.render('authLogin', data);
                 }
                 if (err.name === 'URIError') {
                     console.error(err);
                 }
-
-                return 0
+                return false
             }
         }
     },

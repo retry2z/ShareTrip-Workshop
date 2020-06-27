@@ -33,6 +33,11 @@ const authService = {
     async register(data) {
         const { email, password, rePassword } = data;
 
+        const test = await user.findOne({ email });
+        if (!!test) {
+            throw new TypeError('Email address already registered.');
+        }
+
         if (password !== rePassword) {
             throw new TypeError('Passwords are not equals');
         }

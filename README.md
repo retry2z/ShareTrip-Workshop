@@ -2,15 +2,18 @@
 ![GitHub stars](https://img.shields.io/github/stars/retry2z/ExpressJS-API?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/retry2z/ExpressJS-API?style=social)
 
+## Description
+
+//TODO
+
 
 ## Features
 
 - Dynamic routing managing
 - Route guarding a different approach.
-- Mongoose
+- Mongoose for CRUD operation to MongoDB
 - Custom Auth service - JWT & bcrypt 
-- Default login - guest@example.com / 12345678 || asd@asd.asd / asdasdasd
-- Front-end validation, Back-end validation, Data-base validation 
+- Back-end validation, Data-base validation 
 
 
 ## Prerequisites
@@ -20,7 +23,7 @@ Before you begin, ensure you have met the following requirements:
 * You have a Windows, Linux or Mac machine. State which OS is supported/which is not.
 * You have read https://docs.npmjs.com/.
 
-## Installing
+## Installing and configuration before running
 
 To install follow these steps:
 
@@ -29,14 +32,8 @@ Windows, Linux and macOS:
 npm install
 ```
 
-Create or personize `.env` file bofere run `npm start` to start the server.
+Create or customize `.env` file before run `npm start` to start local the server.
 
-
-## Documentation & Examples
-
-```
-
-```
 
 ## Contributing
 
