@@ -35,7 +35,7 @@ module.exports = {
                 return 1
             }
             catch (err) {
-                errorHandler(err, request, response, 'productCreate');
+                return errorHandler(err, request, response, 'productCreate');
             }
         }
     },
@@ -55,7 +55,7 @@ module.exports = {
                 return 1
             }
             catch (err) {
-                errorHandler(err, request, response, 'productDetails');
+                return errorHandler(err, request, response, 'productDetails');
             }
         }
     },
@@ -69,7 +69,7 @@ module.exports = {
                 return 1
             }
             catch (err) {
-                errorHandler('index');
+                return errorHandler('index');
             }
         },
     },
@@ -93,7 +93,7 @@ module.exports = {
                 return 1
             }
             catch (err) {
-                errorHandler(err, request, response, 'productEdit');
+                return errorHandler(err, request, response, 'productEdit');
             }
         },
         async post(request, response) {
@@ -110,7 +110,7 @@ module.exports = {
                 return 1
             }
             catch (err) {
-                errorHandler(err, request, response, 'productEdit', { ...request.body, _id: request.params.id });
+                return errorHandler(err, request, response, 'productEdit', { ...request.body, _id: request.params.id });
             }
         }
     },
@@ -135,7 +135,7 @@ module.exports = {
 
             }
             catch (err) {
-                errorHandler(err, request, response, 'productDelete');
+                return errorHandler(err, request, response, 'productDelete');
             }
         },
         async post(request, response) {
@@ -152,7 +152,7 @@ module.exports = {
                 return 1
             }
             catch (err) {
-                errorHandler(err, request, response, 'productDelete');
+                return errorHandler(err, request, response, 'productDelete');
             }
         }
     },

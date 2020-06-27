@@ -17,7 +17,7 @@ const routeHandler = (status, res, path) => {
     res.cookie(config.authCookie, status, {
         httpOnly: true,
         signed: true,
-        maxAge: 900000,
+        maxAge: 1900000,
     });
     res.redirect('/');
 
