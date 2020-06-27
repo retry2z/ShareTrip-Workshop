@@ -1,5 +1,5 @@
 const productService = require('./product-service');
-const ProductValidation = require('../../models/validation/Product-validation');
+const ProductValidation = require('../../shared/validation/Product-validation');
 const userService = require('../user/user-service');
 
 const errorHandler = (err, request, response, page, input) => {

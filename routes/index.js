@@ -3,7 +3,7 @@ const authRoute = require('./auth-route-module');
 const productsRoute = require('./products-route-module');
 const userRoute = require('./user-route-module');
 
-const authGuard = require('../utils/authGuard');
+const authGuard = require('../shared/utils/authGuard');
 
 const routes = [
     {

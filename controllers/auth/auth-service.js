@@ -2,8 +2,8 @@ const config = require('../../config/config');
 const user = require('../../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const UserManagement = require('services/UserManagement');
-const Account = require('../../models/validation/Account-validation');
+const UserManagement = require('../../services/UserManagement');
+const Account = require('../../shared/validation/Account-validation');
 
 
 const authenticate = async (request, response, next) => {

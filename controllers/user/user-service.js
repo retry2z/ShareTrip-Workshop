@@ -1,4 +1,4 @@
-const UserManagement = require('services/UserManagement');
+const UserManagement = require('../../services/UserManagement');
 
 //Add new individual functionality here
 
