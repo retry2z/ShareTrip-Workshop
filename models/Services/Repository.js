@@ -1,3 +1,5 @@
+//Write here the common DB CRUD functionality.
+
 class Repository {
     constructor(collection) {
         this.collection = collection;

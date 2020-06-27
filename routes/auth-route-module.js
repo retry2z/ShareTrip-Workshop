@@ -4,7 +4,6 @@ const router = express.Router();
 const authController = require('../controllers/auth-controller');
 
 const routeHandler = (status, res, path) => {
-    console.log(typeof status, status);
     if (typeof status !== 'string') {
         const state = status.toString() || '-1';
         const handler = {
