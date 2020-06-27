@@ -4,7 +4,7 @@ const ProductValidation = require('../models/validation/Product-validation');
 const errorHandler = (err, request, response, page, input) => {
     if (err.name === 'TypeError') {
         const data = {
-            item: input ? input : [],
+            item: input ? input : false,
             user: !!request.user,
             error: err.message,
         }
@@ -44,11 +44,10 @@ module.exports = {
     details: {
         async get(request, response) {
             try {
+                const productDetails = await productService.details(request.params.id);
                 const owner = productDetails.author.toString() === request.user.uid.toString();
-
                 const data = {
                     item: productDetails,
-                    accessories: accessories,
                     user: !!request.user,
                     owner,
                 }
@@ -111,7 +110,7 @@ module.exports = {
                 return 1
             }
             catch (err) {
-                errorHandler(err, request, response, 'productEdit', request.body);
+                errorHandler(err, request, response, 'productEdit', { ...request.body, _id: request.params.id });
             }
         }
     },
@@ -149,7 +148,7 @@ module.exports = {
                 }
 
                 await productService.remove(request.params.id);
-                await request.user.pull('cubes', request.params.id);
+                await request.user.removeSet('cubes', request.params.id);
                 return 1
             }
             catch (err) {
