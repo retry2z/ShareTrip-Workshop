@@ -8,13 +8,14 @@ module.exports = {
                 const data = {
                     user: !!request.user,
                 }
-                return response.render('authRegister', data);
+                response.render('authRegister', data);
+                return 1
             }
             catch (err) {
                 if (err.name === 'URIError') {
                     console.error(err.message);
                 }
-                return false
+                return 0
             }
         },
 
@@ -28,12 +29,13 @@ module.exports = {
                         user: !!request.user,
                         error: err.message,
                     }
-                    return response.render('authRegister', data);
+                    response.render('authRegister', data);
+                    return -1
                 }
                 if (err.name === 'URIError') {
                     console.error(err);
                 }
-                return false
+                return 0
             }
         }
     },
@@ -45,13 +47,14 @@ module.exports = {
                 const data = {
                     user: !!request.user,
                 }
-                return response.render('authLogin', data);
+                response.render('authLogin', data);
+                return 1
             }
             catch (err) {
                 if (err.name === 'URIError') {
                     console.error(err.message);
                 }
-                return false
+                return 0
             }
         },
 
@@ -65,12 +68,13 @@ module.exports = {
                         user: !!request.user,
                         error: err.message,
                     }
-                    return response.render('authLogin', data);
+                    response.render('authLogin', data);
+                    return -1
                 }
                 if (err.name === 'URIError') {
                     console.error(err);
                 }
-                return false
+                return 0
             }
         }
     },

@@ -32,10 +32,10 @@ const authenticate = async (request, response, next) => {
 const authService = {
     async register(data) {
         const { email, password, rePassword } = data;
-
         const test = await user.findOne({ email });
+
         if (!!test) {
-            throw new TypeError('Email address already registered.');
+            throw new TypeError('Email address already registered');
         }
 
         if (password !== rePassword) {
@@ -43,8 +43,8 @@ const authService = {
         }
 
         try {
-            const tmp = await new user(new Account({ email, password })).save();
-            return await jwt.sign({ uid: tmp._id }, config.secretToken)
+            const temp = await new user(new Account({ email, password })).save();
+            return await jwt.sign({ uid: temp._id }, config.secretToken)
         }
         catch (err) {
             if (err.name === 'TypeError') {
@@ -62,17 +62,17 @@ const authService = {
         const { email, password } = data;
 
         try {
-            new Account(data);
+            const account = new Account(data);
+            const test = await user.findOne({ email: account.email });
 
-            const tmp = await user.findOne({ email });
-            if (!tmp) {
-                throw new TypeError('Invalid input email or password');
+            if (!test) {
+                throw new TypeError('Invalid email address or password');
             }
 
-            if (await bcrypt.compare(password, tmp.password)) {
-                return await jwt.sign({ uid: tmp._id }, config.secretToken, { expiresIn: '1h' })
+            if (await bcrypt.compare(password, test.password)) {
+                return await jwt.sign({ uid: test._id }, config.secretToken, { expiresIn: '1h' })
             } else {
-                throw new TypeError('Invalid input email or password');
+                throw new TypeError('Invalid email address or password');
             }
         }
         catch (err) {
