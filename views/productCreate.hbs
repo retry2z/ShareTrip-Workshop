@@ -1,23 +1,31 @@
-<main>
-  <h1>Create</h1>
-  <div class="form">
-    <form action='/cubic/create' method="POST">
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name">
-      <label for="name">Description</label>
-      <textarea id="name" name="description"></textarea>
-      <label for="image">ImageUrl</label>
-      <input type="text" id="image" name="imageUrl">
-      <label for="difficulty">Difficulty</label>
-      <select id="difficulty" name="difficultyLevel">
-        <option value="1">1 - Very Easy</option>
-        <option value="2">2 - Easy</option>
-        <option value="3">3 - Medium (Standard 3x3)</option>
-        <option value="4">4 - Intermediate</option>
-        <option value="5">5 - Expert</option>
-        <option value="6">6 - Hardcore</option>
-      </select>
-      <input type="submit" value="Create">
-    </form>
+<section class="py-5">
+  <div class="container">
+    <h1 style="margin: 2%; text-align: center;">Offer Tripp</h1>
+    <div style="padding: 5%;">
+      <form action='/sharedTrips/create' method="POST">
+        <div class="form-group">
+          <label for="startAndEndPoint">Starting Point - End Point</label>
+          <input type="text" name="startAndEndPoint" class="form-control" id="startAndEndPoint" aria-describedby="emailHelp"
+            placeholder="Studentski grad - Pamporovo">
+        </div>
+        <div class="form-group">
+          <label for="dateTime">Date - Time</label>
+          <input type="text" name="dateTime" class="form-control" id="dateTime" placeholder="29 December 2019 - 19:00">
+        </div>
+        <div class="form-group">
+          <label for="carImage">Car Image</label>
+          <input type="text" name="carImage" class="form-control" id="carImage" placeholder="https://...">
+        </div>
+        <div class="form-group">
+          <label for="seats">Seats</label>
+          <input min="1" max="6" type="number" name="seats" class="form-control" id="seats" placeholder="4...">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" name="description" class="form-control" id="description" placeholder="Price, Car information...">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
   </div>
-</main>
+</section>

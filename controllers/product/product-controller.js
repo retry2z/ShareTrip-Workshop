@@ -1,11 +1,12 @@
 const productService = require('./product-service');
-const ProductValidation = require('../models/validation/Product-validation');
+const ProductValidation = require('../../models/validation/Product-validation');
+const userService = require('../user/user-service');
 
 const errorHandler = (err, request, response, page, input) => {
     if (err.name === 'TypeError') {
         const data = {
             item: input ? input : false,
-            user: !!request.user,
+            user: request.user,
             error: err.message,
         }
         response.render(page, data);
@@ -22,7 +23,7 @@ module.exports = {
     create: {
         async get(request, response) {
             const data = {
-                user: !!request.user,
+                user: request.user,
             };
             response.render('productCreate', data);
             return 1
@@ -30,8 +31,8 @@ module.exports = {
         async post(request, response) {
             try {
                 const item = new ProductValidation(request.body);
-                const tmp = await productService.add({ ...item, author: request.user.uid });
-                await request.user.addSet('cubes', tmp._id);
+                const temp = await productService.add({ ...item, author: request.user.uid });
+                await request.user.addSet('author', temp._id);
                 return 1
             }
             catch (err) {
@@ -46,9 +47,13 @@ module.exports = {
             try {
                 const productDetails = await productService.details(request.params.id);
                 const owner = productDetails.author.toString() === request.user.uid.toString();
+                const author = userService.details(request.uid);
+
+                console.log(author);
+
                 const data = {
                     item: productDetails,
-                    user: !!request.user,
+                    user: request.user,
                     owner,
                 }
                 response.render('productDetails', data);
@@ -63,14 +68,13 @@ module.exports = {
     // List all cubes
     list: {
         async get(request, response) {
-            try {
-                const list = await productService.list();
-                response.render('index', { cube: list });
-                return 1
-            }
-            catch (err) {
-                return errorHandler('index');
-            }
+            const list = await productService.list();
+            const data = {
+                user: request.user,
+                list,
+            };
+            response.render('productList', data);
+            return 1
         },
     },
 
@@ -87,7 +91,7 @@ module.exports = {
 
                 const data = {
                     item: productDetails,
-                    user: !!request.user,
+                    user: request.user,
                 }
                 response.render('productEdit', data);
                 return 1
@@ -128,7 +132,7 @@ module.exports = {
 
                 const data = {
                     item: productDetails,
-                    user: !!request.user,
+                    user: request.user,
                 }
                 response.render('productDelete', data);
                 return 1

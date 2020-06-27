@@ -1,13 +1,31 @@
 const mongoose = require('mongoose');
 
-const cubeSchema = new mongoose.Schema({
-    name: {
+const productSchema = new mongoose.Schema({
+    start: {
         type: String,
         required: true,
-        minlength: 5,
+        minlength:4,
         maxlength: 250,
     },
-    imageUrl: {
+    end: {
+        type: String,
+        required: true,
+        minlength:4,
+        maxlength: 250,
+    },
+    date: {
+        type: String,
+        required: true,
+        minlength:4,
+        maxlength: 250,
+    },
+    time: {
+        type: String,
+        required: true,
+        minlength:4,
+        maxlength: 250,
+    },
+    carImage: {
         type: String,
         required: true,
         match: [/^(http|https):/, 'Invalid url address'],
@@ -15,24 +33,23 @@ const cubeSchema = new mongoose.Schema({
     description: {
         type: String,
         required: true,
-        minlength: 20,
+        minlength: 10,
         maxlength: 250,
     },
-    difficultyLevel: {
+    seats: {
         type: Number,
         required: true,
-        min: 1,
-        max: 6,
+        min: 2,
     },
-    accessories: [{
+    buddies: [{
         type: mongoose.Schema.ObjectId,
-        ref: 'accessories',
+        ref: 'users',
     }],
     author: {
         type: mongoose.Schema.ObjectId,
-        ref: 'user',
+        ref: 'users',
         required: true,
     },
 });
 
-module.exports = mongoose.model('cubes', cubeSchema);
+module.exports = mongoose.model('tripps', productSchema);

@@ -13,49 +13,78 @@ module.exports = class Cube {
         }
     }
 
-    set _name(data) {
-        const patternLength = /^.{5,20}$/g;
-        if (!patternLength.test(data)) {
-            throw new TypeError('Name must be between 5 and 20 characters long');
+    set _startAndEndPoint(data) {
+        const [start, end] = data.trim().split(' - ');
+
+        if (!data.includes(' - ')) {
+            throw new TypeError(`Invalid start - end format`);
+
         }
 
-        const pattern = /^[a-zA-Z\s]+$/g;
+        if (start.length < 5) {
+            throw new TypeError(`${start} should be at least 4 letters long and only latin letters`);
+        }
+
+        if (end.length < 5) {
+            throw new TypeError(`${end} should be at least 4 letters long and only latin letters`);
+        }
+
+        const pattern = /^([A-Za-z]{4,}) - ([A-Za-z]{4,})$/g;
         if (pattern.test(data)) {
-            this.name = data;
+            this.start = start;
+            this.end = end;
         } else {
-            throw new TypeError('Name must contain only Latin characters');
+            throw new TypeError('Invalid start - end format');
         }
     }
 
-    set _imageUrl(data) {
+    set _dateTime(data) {
+        const [date, time] = data.trim().split(' - ');
+
+        if (!data.includes(' - ')) {
+            throw new TypeError(`Invalid date - time format`);
+        }
+
+        if (date.length < 7) {
+            throw new TypeError(`Date should be at least 6 letters long and only latin letters`);
+        }
+
+        if (time.length < 5) {
+            throw new TypeError(`Time should be at least 5 letters long and only latin letters`);
+        }
+
+        const pattern = /^([A-Za-z0-9\s]{6,}) - ([A-Za-z0-9\s:]{5,})$/g;
+        if (pattern.test(data)) {
+            this.date = date;
+            this.time = time;
+        } else {
+            throw new TypeError('Invalid date - time format');
+        }
+    }
+
+    set _carImage(data) {
         const pattern = /^(http|https):/g;
         if (pattern.test(data)) {
-            this.imageUrl = data;
+            this.carImage = data;
         } else {
             throw new TypeError('Invalid url address.');
         }
     }
 
     set _description(data) {
-        const patternLength = /^.{20,}$/g;
+        const patternLength = /^.{10,}$/g;
         if (!patternLength.test(data)) {
-            throw new TypeError('Description must be at least 20 characters long');
+            throw new TypeError('Description must be at least 10 characters long');
         }
 
-        const pattern = /^[a-zA-Z0-9\s]+$/g;
-        if (pattern.test(data)) {
-            this.description = data;
-        } else {
-            throw new TypeError('Description must contain only Latin characters and digits');
-        }
+        this.description = data;
     }
 
-    set _difficultyLevel(data) {
-        const pattern = /^[1-6]$/g;
-        if (pattern.test(data)) {
-            this.difficultyLevel = data;
+    set _seats(data) {
+        if (+data > 1) {
+            this.seats = data;
         } else {
-            throw new TypeError('Difficulty level must be between 1 and 6');
+            throw new TypeError('The enter number should be more than 2');
         }
     }
 }

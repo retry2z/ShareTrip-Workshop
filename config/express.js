@@ -3,7 +3,7 @@ const express = require('express');
 const handlebars = require('express-handlebars');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const { authenticate } = require('../controllers/auth-service');
+const { authenticate } = require('../controllers/auth/auth-service');
 const routes = require('../routes/index');
 
 module.exports = (app) => {

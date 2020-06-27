@@ -4,21 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cubicle</title>
-    <link href="/static/css/site.css" type="text/css" rel="stylesheet">
-    <link rel='shortcut icon' type='image/x-icon' href='/static/images/favicon.png' />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="/static/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <title>Page Title</title>
 </head>
 
 <body>
+    {{>header}}
+    {{>errorNotification}}
+    {{{body}}}
+    {{>footer}}
 
-    <body>
-        <div class="container">
-            {{>header}}
-            {{>errorNotification}}
-            {{{body}}}
-        </div>
-        {{>footer}}
-    </body>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 const config = require('../config/config');
 const express = require('express');
 const router = express.Router();
-const authController = require('../controllers/auth-controller');
+const authController = require('../controllers/auth/auth-controller');
 
 const routeHandler = (status, res, path) => {
     if (typeof status !== 'string') {
@@ -17,7 +17,7 @@ const routeHandler = (status, res, path) => {
     res.cookie(config.authCookie, status, {
         httpOnly: true,
         signed: true,
-        maxAge: 1900000,
+        maxAge: 3600000,
     });
     res.redirect('/');
 

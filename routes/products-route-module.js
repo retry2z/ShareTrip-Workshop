@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const cubeController = require('../controllers/product-controller');
+const cubeController = require('../controllers/product/product-controller');
 
 const routeHandler = (status, res, path) => {
     const state = status.toString() || '-1';

@@ -2,10 +2,12 @@ const user = require('../User');
 
 class UserManagement {
     constructor(data) {
-        this.uid = data._id;
-        this.name = data.name || '';
-        this.imageUrl = data.imageUrl || '';
-        this.email = data.email;
+        if (data) {
+            this.uid = data._id;
+            this.name = data.name || '';
+            this.imageUrl = data.imageUrl || '';
+            this.email = data.email;
+        }
         this.collection = user;
     }
 

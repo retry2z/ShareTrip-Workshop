@@ -17,10 +17,15 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    cubes: [{
+    author: [{
         type: mongoose.Schema.ObjectId,
-        ref: 'cubes',
+        ref: 'tripps',
     }],
+    tripHistory: [{
+        type: mongoose.Schema.ObjectId,
+        ref: 'tripps',
+    }],
+
 });
 
 userSchema.pre('save', async function (next) {

@@ -1,19 +1,29 @@
-<header>
-    <ul>
-        <li><img class="logo" src="/static/images/logo.png"></li>
-        <li><a href="/">Browse</a></li>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">SharedTripp</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-        {{#if user}}
-        <li><a href="/cubic/create">Add a Cube</a></li>
-        <li><a href="/user/profile">Profile</a></li>
-        <li><a href="/user/logout">Logout</a></li>
-        {{/if}}
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
 
-        <li><a href="/about">About</a></li>
+                {{#if user}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/sharedTrips/list">Shared Tripps</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/logout">Logout as [{{ user.email }}]</a>
+                </li>
+                {{else}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/auth/login">Login</a>
+                </li>
+                {{/if}}
 
-        {{#unless user}}
-        <li><a href="/auth/login">Login</a></li>
-        <li><a href="/auth/register">Register</a></li>
-        {{/unless}}
-    </ul>
-</header>
+            </ul>
+        </div>
+
+    </div>
+</nav>

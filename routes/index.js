@@ -16,7 +16,7 @@ const routes = [
     },
     {
         active: authGuard,
-        route: '/cubic',
+        route: '/sharedTrips',
         module: productsRoute,
         data: {
             isLogged: true,
