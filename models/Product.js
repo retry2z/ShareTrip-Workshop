@@ -4,25 +4,25 @@ const productSchema = new mongoose.Schema({
     start: {
         type: String,
         required: true,
-        minlength:4,
+        minlength: 4,
         maxlength: 250,
     },
     end: {
         type: String,
         required: true,
-        minlength:4,
+        minlength: 4,
         maxlength: 250,
     },
     date: {
         type: String,
         required: true,
-        minlength:4,
+        minlength: 4,
         maxlength: 250,
     },
     time: {
         type: String,
         required: true,
-        minlength:4,
+        minlength: 4,
         maxlength: 250,
     },
     carImage: {
@@ -42,8 +42,7 @@ const productSchema = new mongoose.Schema({
         min: 2,
     },
     buddies: [{
-        type: mongoose.Schema.ObjectId,
-        ref: 'users',
+        type: String
     }],
     author: {
         type: mongoose.Schema.ObjectId,

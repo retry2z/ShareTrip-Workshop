@@ -29,12 +29,13 @@ class UserManagement {
         }
     }
 
-    async details() {
+    async details(data) {
+        const id = this.uid || data;
         try {
-            return await this.collection.findById(this.uid).lean();
+            return await this.collection.findById({ _id: id }).lean();
         }
         catch (err) {
-            throw new URIError('Could account you are looking for may be not exist.');
+            throw new URIError('Account you are looking for may be not exist.');
         }
     }
 

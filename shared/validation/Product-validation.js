@@ -29,7 +29,7 @@ module.exports = class Cube {
             throw new TypeError(`${end} should be at least 4 letters long and only latin letters`);
         }
 
-        const pattern = /^([A-Za-z]{4,}) - ([A-Za-z]{4,})$/g;
+        const pattern = /^([A-Za-z]{4,}) - ([A-Za-z\s]{4,})$/g;
         if (pattern.test(data)) {
             this.start = start;
             this.end = end;

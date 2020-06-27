@@ -47,16 +47,33 @@ module.exports = {
             try {
                 const productDetails = await productService.details(request.params.id);
                 const owner = productDetails.author.toString() === request.user.uid.toString();
-                const author = userService.details(request.uid);
-
-                console.log(author);
+                const author = await userService.details(productDetails.author.toString());
+                const isJoined = productDetails.buddies.includes(request.user.email);
+                const available = productDetails.seats >= 2;
+                const buddies = productDetails.buddies.join(', ');
 
                 const data = {
                     item: productDetails,
                     user: request.user,
+                    author: author.email,
+                    buddies,
+                    available,
+                    isJoined,
                     owner,
                 }
                 response.render('productDetails', data);
+                return 1
+            }
+            catch (err) {
+                return errorHandler(err, request, response, 'productDetails');
+            }
+        },
+
+        async post(request, response) {
+            try {
+                await productService.addSet(request.params.id, 'buddies', request.user.email);
+                await productService.edit(request.params.id, { $inc: { 'seats': -1 } });
+                await request.user.addSet('tripHistory', request.params.id);
                 return 1
             }
             catch (err) {
@@ -123,41 +140,19 @@ module.exports = {
     delete: {
         async get(request, response) {
             try {
-                const productDetails = await productService.details(request.params.id);
-                const owner = productDetails.author.toString() === request.user.uid.toString();
+                // const owner = await productDetails.author.toString() === request.user.uid.toString();
 
-                if (!owner) {
-                    return 0
-                }
-
-                const data = {
-                    item: productDetails,
-                    user: request.user,
-                }
-                response.render('productDelete', data);
+                // console.log(owner);
+                // if (!owner) {
+                //     return 0
+                // }
+                console.log(request.params.id);
+                await productService.remove(request.params.id);
                 return 1
-
             }
             catch (err) {
-                return errorHandler(err, request, response, 'productDelete');
+                return errorHandler(err, request, response);
             }
         },
-        async post(request, response) {
-            try {
-                const productDetails = await productService.details(request.params.id);
-                const owner = productDetails.author.toString() === request.user.uid.toString();
-
-                if (!owner) {
-                    return 0
-                }
-
-                await productService.remove(request.params.id);
-                await request.user.removeSet('cubes', request.params.id);
-                return 1
-            }
-            catch (err) {
-                return errorHandler(err, request, response, 'productDelete');
-            }
-        }
     },
 };
