@@ -4,7 +4,7 @@
 
 ## Description
 
-The application is about contacting people who provide road trips and have available seats. Only registered users can see list of shared trip and reverse if there is free seat.
+The application is about contacting people who provide road trips and have available seats. Only registered users can add and view list of shared trips and view details about it. If there is free seat can join.
 
 ## Technoligies
 
@@ -31,7 +31,7 @@ Windows, Linux and macOS:
 npm install
 ```
 
-Create or customize `.env` file before run `npm start` to start local the server.
+Create `.env` file or configurate config.js before run `npm start` to start local the server.
 
 
 ## Contributing
