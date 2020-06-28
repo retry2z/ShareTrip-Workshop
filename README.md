@@ -4,8 +4,8 @@
 
 ## Description
 
-//TODO
-
+The application is about contacting people who provide road trips and have available seats. Only registered users can see list of shared trip and reverse if there is free seat.
+Technologies: Node.js, Express.js, MongoDB, JWT, JavaScript.
 
 ## Features
 
