@@ -49,7 +49,7 @@ module.exports = {
                 const owner = productDetails.author.toString() === request.user.uid.toString();
                 const author = await userService.details(productDetails.author.toString());
                 const isJoined = productDetails.buddies.includes(request.user.email);
-                const available = productDetails.seats >= 2;
+                const available = productDetails.seats >= 1;
                 const buddies = productDetails.buddies.join(', ');
 
                 const data = {

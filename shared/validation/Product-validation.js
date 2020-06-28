@@ -81,10 +81,10 @@ module.exports = class Cube {
     }
 
     set _seats(data) {
-        if (+data > 1) {
+        if (+data >= 1) {
             this.seats = data;
         } else {
-            throw new TypeError('The enter number should be more than 2');
+            throw new TypeError('The enter number should be more than 0');
         }
     }
 }

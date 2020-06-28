@@ -39,7 +39,7 @@ const productSchema = new mongoose.Schema({
     seats: {
         type: Number,
         required: true,
-        min: 2,
+        min: 1,
     },
     buddies: [{
         type: String
