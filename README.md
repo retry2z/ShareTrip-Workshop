@@ -8,6 +8,7 @@ The application is about contacting people who provide road trips and have avail
 
 ## Technoligies
 
+- Server-side render html
 - Dynamic routing managing
 - Route guarding a different approach.
 - Mongoose for CRUD operation to MongoDB
