@@ -1,14 +1,14 @@
-![GitHub repo size](https://img.shields.io/github/repo-size/retry2z/ExpressJS-API)
-![GitHub stars](https://img.shields.io/github/stars/retry2z/ExpressJS-API?style=social)
-![GitHub forks](https://img.shields.io/github/forks/retry2z/ExpressJS-API?style=social)
+![GitHub repo size](https://img.shields.io/github/repo-size/retry2z/ShareTrip-Workshop)
+![GitHub stars](https://img.shields.io/github/stars/retry2z/ShareTrip-Workshop?style=social)
+![GitHub forks](https://img.shields.io/github/forks/retry2z/ShareTrip-Workshop?style=social)
 
 ## Description
 
-//TODO
+The application is about contacting people who provide road trips and have available seats. Only registered users can add and view list of shared trips and view details about it. If there is free seat can join.
 
+## Technoligies
 
-## Features
-
+- Server-side render html
 - Dynamic routing managing
 - Route guarding a different approach.
 - Mongoose for CRUD operation to MongoDB
@@ -32,7 +32,7 @@ Windows, Linux and macOS:
 npm install
 ```
 
-Create or customize `.env` file before run `npm start` to start local the server.
+Create `.env` file or configurate config.js before run `npm start` to start local the server.
 
 
 ## Contributing
